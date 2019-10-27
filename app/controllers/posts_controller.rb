@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    
+
     if(@post.save)
       redirect_to @post
     else
@@ -35,6 +35,13 @@ class PostsController < ApplicationController
       render 'edit'
     end
 
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    redirect_to posts_path
   end
 
   private def post_params
